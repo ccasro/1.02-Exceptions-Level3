@@ -1,16 +1,16 @@
-package org.ccasro;
+package org.ccasro.model;
 
-import java.util.Scanner;
+import org.ccasro.service.CinemaManagement;
+import org.ccasro.util.InputScanner;
 
 public class Cinema {
     private int numRows;
     private int numSeatsByRow;
     private CinemaManagement cinemaManage;
     private SeatManagement seatManage;
-    private Scanner sc = new Scanner(System.in);
 
     public Cinema() {
-        this.cinemaManage = new CinemaManagement();
+        this.cinemaManage = new CinemaManagement(this);
         this.seatManage = new SeatManagement();
         requestInitialData();
     }
@@ -22,7 +22,7 @@ public class Cinema {
 
         while (true) {
             System.out.println("Provide the number of Rows: ");
-            String input = sc.nextLine();
+            String input = InputScanner.SC.nextLine();
             try {
                 numRows = Integer.parseInt(input);
                 if (numRows <= 0) {
@@ -35,7 +35,7 @@ public class Cinema {
 
             while (true) {
                 System.out.println("Provide the number of seats by row: ");
-                String input = sc.nextLine();
+                String input = InputScanner.SC.nextLine();
                 try {
                     numSeatsByRow = Integer.parseInt(input);
                     if (numSeatsByRow <= 0) {
@@ -49,6 +49,10 @@ public class Cinema {
 
             this.numRows = numRows;
             this.numSeatsByRow = numSeatsByRow;
+
+        }
+
+        public void begin(){
 
         }
     }
