@@ -6,13 +6,25 @@ import org.ccasro.util.InputScanner;
 public class Cinema {
     private int numRows;
     private int numSeatsByRow;
-    private CinemaManagement cinemaManage;
-    private SeatManagement seatManage;
+    private CinemaManagement cinemaManager;
+    private SeatManagement seatManager;
 
     public Cinema() {
-        this.cinemaManage = new CinemaManagement(this);
-        this.seatManage = new SeatManagement();
+        this.cinemaManager = new CinemaManagement(this);
+        this.seatManager = new SeatManagement();
         requestInitialData();
+    }
+
+    public SeatManagement getSeatManager(){
+        return this.seatManager;
+    }
+
+    public int getNumRows(){
+        return this.numRows;
+    }
+
+    public int getNumSeatsByRow(){
+        return this.numSeatsByRow;
     }
 
     public void requestInitialData() {
@@ -52,7 +64,20 @@ public class Cinema {
 
         }
 
-        public void begin(){
+        public void start() {
+        int option;
+        do {
+            option = cinemaManager.menu();
+            switch(option){
+                case 1 -> cinemaManager.showSeats();
+                case 2 -> cinemaManager.showSeatsByPerson();
+                case 3 -> cinemaManager.reserveSeat();
+                case 4 -> cinemaManager.cancelReservation();
+                case 5 -> cinemaManager.cancelReservationPerson();
+                case 0 -> System.out.println("Exiting...");
+                default -> System.out.println("Invalid option");
+            }
+        } while (option != 0);
 
         }
     }
