@@ -4,7 +4,7 @@ import org.ccasro.model.Cinema;
 import org.ccasro.util.InputScanner;
 
 public class Main {
-    static void main (String[] args) {
+    public static void main (String[] args) {
         Cinema cinema = new Cinema();
         cinema.start();
 

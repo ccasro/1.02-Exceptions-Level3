@@ -66,8 +66,11 @@ public class CinemaManagement {
             int row = enterRow();
             int seat = enterSeat();
             String person = enterPersonName();
-            cinema.getSeatManager().addSeat(new Seat(row,seat,person));
+            cinema.getSeatManager().addSeat(new Seat(row, seat, person));
             System.out.println("Seat reserved! ");
+        } catch (InputMismatchException e){
+            System.out.println("Must be a number");
+            InputScanner.SC.nextLine();
         } catch (InvalidRowException e) {
             System.out.println("Row error : " + e.getMessage());
         } catch (InvalidSeatException e) {
@@ -85,6 +88,9 @@ public class CinemaManagement {
             int seat = enterSeat();
             cinema.getSeatManager().removeSeat(row, seat);
             System.out.println("Reservation cancelled! ");
+        } catch (InputMismatchException e){
+            System.out.println("Must be a number");
+            InputScanner.SC.nextLine();
         } catch (InvalidRowException e) {
             System.out.println("Row error : " + e.getMessage());
         } catch (InvalidSeatException e){
@@ -125,22 +131,23 @@ public class CinemaManagement {
     }
 
     public int enterRow() throws InvalidRowException {
-        System.out.println("Enter row number: ");
-        int row = InputScanner.SC.nextInt();
-        InputScanner.SC.nextLine();
-        if (row < 1 || row > cinema.getNumRows()) {
-            throw new InvalidRowException("Row out of range");
+            System.out.println("Enter row number: ");
+                int row = InputScanner.SC.nextInt();
+                InputScanner.SC.nextLine();
+                if (row < 1 || row > cinema.getNumRows()) {
+                    throw new InvalidRowException("Row out of range");
+                }
+                return row;
+
         }
-        return row;
-    }
 
     public int enterSeat() throws InvalidSeatException {
-        System.out.println("Enter seat number: ");
-        int seat = InputScanner.SC.nextInt();
-        InputScanner.SC.nextLine();
-        if (seat < 1 || seat > cinema.getNumSeatsByRow()) {
-            throw new InvalidSeatException("Seat out of range");
-        }
-        return seat;
+            System.out.println("Enter seat number: ");
+                int seat = InputScanner.SC.nextInt();
+                InputScanner.SC.nextLine();
+                if (seat < 1 || seat > cinema.getNumSeatsByRow()) {
+                   throw new InvalidSeatException("Seat out of range");
+                }
+                return seat;
+            }
     }
-}
